@@ -14,10 +14,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "gamely_core",
-    "host": "127.0.0.1",
+    "username": "vhcslsdywaczie",
+    "password": "e3e9696715d60128aac4e6f4d9a0af59ae4287e1fde4d156e82b44d020b83e52",
+    "database": "d3idg7vcdu6cjv",
+    "host": "ec2-54-83-3-101.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
