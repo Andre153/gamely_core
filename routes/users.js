@@ -6,6 +6,8 @@ const router = express.Router();
 router.get('/:uuid', (req, res, next) => {
     userHandler.findUserByUUID(req.param('uuid')).then(user => {
         res.status(200).send(user)
+    }, err => {
+        res.status(200).send(err)
     })
 });
 
