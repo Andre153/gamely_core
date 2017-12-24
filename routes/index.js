@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const gameHandler = require('../handler/GameHandler');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/game/feeds', (req, res, next) => {
+  gameHandler.findGameFeeds().then(games => {
+      res.status(200).send(games)
+  }, err => {
+      res.status(200).send(err);
+  });
 });
 
 module.exports = router;
