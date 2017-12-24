@@ -1,4 +1,5 @@
 const User = require('../models').CoreUser;
+const UserGames = require('../models').UserGames;
 const UUID = require('uuid/v4');
 
 module.exports = {
@@ -36,6 +37,19 @@ module.exports = {
         return new Promise((resolve, reject) => {
             User.find({where: {uuid: uuid}})
                 .then(user => resolve(user))
+                .catch(err => reject(err))
+        })
+    },
+
+    addGame(uuid, gameData) {
+        return new Promise((resolve, reject) => {
+            UserGames.create({
+                user_uuid: uuid,
+                game_uuid: gameData.gameUUID,
+                price: gameData.price,
+                status: 'ACTIVE',
+                image_url: gameData.imageURL
+            }).then(user => resolve(user))
                 .catch(err => reject(err))
         })
     }

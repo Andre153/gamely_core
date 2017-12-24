@@ -23,4 +23,12 @@ router.post('/setup/:uuid', (req, res, next) => {
   })
 });
 
+router.post('/:uuid/game/add', (req, res, next) => {
+    userHandler.addGame(req.param('uuid'), req.body).then(user => {
+        res.status(200).send(user)
+    }, err => {
+        res.status(200).send(err)
+    })
+});
+
 module.exports = router;
