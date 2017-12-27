@@ -31,4 +31,8 @@ router.post('/:uuid/game/add', (req, res, next) => {
     })
 });
 
+router.get('/:uuid/profile', (req, res, next) => {
+
+});
+
 module.exports = router;

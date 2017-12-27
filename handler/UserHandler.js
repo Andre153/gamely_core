@@ -1,5 +1,6 @@
 const User = require('../models').CoreUser;
 const UserGames = require('../models').UserGames;
+const UserAdmin = require('../models').UserAdmin;
 const UUID = require('uuid/v4');
 
 module.exports = {
@@ -25,6 +26,13 @@ module.exports = {
                             mobile: userData.mobile,
                             location: userData.location
                         }).then(user => {
+                            UserAdmin.create({
+                                user_uuid: uuid,
+                                followers: 0,
+                                favourites: 0,
+                                games_added: 0,
+                                games_sold: 0
+                            });
                             resolve(user)
                         })
                     }
@@ -41,6 +49,22 @@ module.exports = {
         })
     },
 
+    findProfileData(uuid) {
+        return new Promise((resolve, reject) => {
+            try {
+                let profileData = {};
+                User.find({where: {uuid: uuid}})
+                    .then(user => {
+                        profileData.user = user
+                    })
+
+                UserGames.find
+            }catch (ex) {
+                return reject(ex)
+            }
+        })
+    },
+
     addGame(uuid, gameData) {
         return new Promise((resolve, reject) => {
             UserGames.create({
@@ -49,7 +73,9 @@ module.exports = {
                 price: gameData.price,
                 status: 'ACTIVE',
                 image_url: gameData.imageURL
-            }).then(user => resolve(user))
+            }).then(user => {
+                resolve(user)
+            })
                 .catch(err => reject(err))
         })
     }
