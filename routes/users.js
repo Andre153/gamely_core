@@ -18,8 +18,11 @@ router.post('/create', (req, res, next) => {
 });
 
 router.post('/setup/:uuid', (req, res, next) => {
-  userHandler.completeUser(req.param('uuid'), req.body).then(user => {
-      res.status(200).send(user)
+  userHandler.completeUser(req.param('uuid'), req.body).then(() => {
+      userHandler.findProfileData(req.param('uuid')).then(profile => {
+          res.status(200).send(profile)
+      }, err => {
+          res.status(200).send(err)
   })
 });
 
