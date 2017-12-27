@@ -32,7 +32,11 @@ router.post('/:uuid/game/add', (req, res, next) => {
 });
 
 router.get('/:uuid/profile', (req, res, next) => {
-
+    userHandler.findProfileData(req.param('uuid')).then(profile => {
+        res.status(200).send(profile)
+    }, err => {
+        res.status(200).send(err)
+    })
 });
 
 module.exports = router;
