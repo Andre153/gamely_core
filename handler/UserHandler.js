@@ -56,9 +56,13 @@ module.exports = {
                 User.find({where: {uuid: uuid}})
                     .then(user => {
                         profileData.user = user
-                    })
+                    });
 
-                UserGames.find
+                UserAdmin.find({where: {user_uuid: uuid}})
+                    .then(admin => {
+                        profileData.admin = admin;
+                        resolve(profileData)
+                    })
             }catch (ex) {
                 return reject(ex)
             }
