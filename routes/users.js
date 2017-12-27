@@ -22,7 +22,8 @@ router.post('/setup/:uuid', (req, res, next) => {
       userHandler.findProfileData(req.param('uuid')).then(profile => {
           res.status(200).send(profile)
       }, err => {
-          res.status(200).send(err)
+          res.status(200).send(err);
+      })
   })
 });
 
