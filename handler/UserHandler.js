@@ -15,6 +15,22 @@ module.exports = {
         })
     },
 
+    addProfilePicture(uuid, userData) {
+        return new Promise((resolve, reject) => {
+            User.find({where: {uuid: uuid}})
+                .then(user => {
+                    if (user) {
+                        user.updateAttributes({
+                            profilePicture: userData.profilePicture
+                        }).then(user => {
+                            resolve(user)
+                        })
+                    }
+                })
+                .catch(err => reject(err));
+        })
+    },
+
     completeUser(uuid, userData) {
         return new Promise((resolve, reject) => {
             User.find({where: {uuid: uuid}})
