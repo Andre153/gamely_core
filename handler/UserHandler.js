@@ -17,7 +17,7 @@ module.exports = {
 
     addProfilePicture(uuid, userData) {
         console.log('Profile> Adding profile picture');
-        console.log(`Profile> ${userData}`);
+        console.log(`Profile> ${userData.toString()}`);
         console.log(`Profile> ${userData.profilePicture}`);
         return new Promise((resolve, reject) => {
             User.find({where: {uuid: uuid}})
