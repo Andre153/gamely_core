@@ -74,14 +74,15 @@ module.exports = {
                 let profileData = {};
                 User.find({where: {uuid: uuid}})
                     .then(user => {
-                        profileData.user = user
+                        profileData.user = user;
+                        UserAdmin.find({where: {user_uuid: uuid}})
+                            .then(admin => {
+                                profileData.admin = admin;
+                                resolve(profileData)
+                            })
                     });
 
-                UserAdmin.find({where: {user_uuid: uuid}})
-                    .then(admin => {
-                        profileData.admin = admin;
-                        resolve(profileData)
-                    })
+
             }catch (ex) {
                 return reject(ex)
             }
